@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Intern Training & Performance Management</title>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef1ec;--panel:#fbfcfa;--ink:#1b2b27;--mut:#5d6e68;--line:#d5dcd6;--side:#133a2a;--side-ink:#d8e8de;--brand:#14532d;--brand-ink:#fff;--accent:#e0a030;--ok:#2f7d4f;--warn:#b7791f;--bad:#a63232;--soft:#e4ebe5;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1713;--panel:#17211c;--ink:#e6ece8;--mut:#93a49c;--line:#2a3832;--side:#0a110e;--side-ink:#b9cdc1;--brand:#5fb98a;--brand-ink:#0b1510;--accent:#e8b14a;--ok:#6fcb97;--warn:#e0b050;--bad:#e27a7a;--soft:#1f2c26}}
+:root[data-theme="dark"]{--bg:#0f1713;--panel:#17211c;--ink:#e6ece8;--mut:#93a49c;--line:#2a3832;--side:#0a110e;--side-ink:#b9cdc1;--brand:#5fb98a;--brand-ink:#0b1510;--accent:#e8b14a;--ok:#6fcb97;--warn:#e0b050;--bad:#e27a7a;--soft:#1f2c26}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 "Hanken Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;display:flex;min-height:100vh}
+aside{width:220px;background:var(--side);color:var(--side-ink);padding:22px 14px;position:sticky;top:0;height:100vh;flex:none}
+aside h1{font-size:17px;line-height:1.25;margin:0 8px 22px;color:#fff}
+aside nav{display:flex;flex-direction:column;gap:2px}
+aside button{all:unset;cursor:pointer;padding:9px 12px;border-radius:6px;border-left:3px solid transparent}
+aside button:hover{background:rgba(189, 81, 81, 0.07)}
+aside button.on{border-left-color:var(--accent);background:rgba(255,255,255,.1);color:#fff;font-weight:700}
+aside small{display:block;margin:22px 10px 0;opacity:.7;font-size:12px}
+main{flex:1;min-width:0;padding:26px 30px 60px;max-width:1100px}
+header.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+h2{margin:0;font-size:24px;letter-spacing:-.01em}
+h3{margin:0 0 10px;font-size:16px}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.btn{font:inherit;cursor:pointer;border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:7px 14px;border-radius:6px}
+.btn:hover{border-color:var(--brand)}
+.btn.primary{background:var(--brand);color:var(--brand-ink);border-color:var(--brand);font-weight:500}
+.btn.danger{color:var(--bad)}
+.btn.sm{padding:3px 9px;font-size:13px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.strip{display:flex;flex-wrap:wrap;margin-bottom:18px;border-bottom:1px solid var(--line)}
+.strip div{padding:6px 28px 14px 0;margin-right:28px;border-right:1px solid var(--line)}
+.strip div:last-child{border:0}
+.strip b{display:block;font-size:34px;line-height:1.1;letter-spacing:-.02em}
+.strip span{color:var(--mut);font-size:13px}
+.bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+input,select{font:inherit;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:7px 10px;min-width:0}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+table{border-collapse:collapse;width:100%}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:middle}
+th{font-size:13px;color:var(--mut);font-weight:500;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.act{white-space:nowrap;text-align:right}
+.link{all:unset;cursor:pointer;font-weight:700;color:var(--brand)}
+.link:hover{text-decoration:underline}
+.chip{display:inline-block;padding:1px 9px;border-radius:99px;font-size:12px;font-weight:500;background:var(--soft);color:var(--mut)}
+.chip.ok{background:color-mix(in srgb,var(--ok) 18%,transparent);color:var(--ok)}
+.chip.warn{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.chip.bad{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.m{display:inline-block;width:70px;height:7px;background:var(--soft);border-radius:4px;overflow:hidden;vertical-align:middle;margin-right:8px}
+.m i{display:block;height:100%;background:var(--brand)}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.seg button{font:inherit;border:0;background:var(--panel);color:var(--ink);padding:5px 14px;cursor:pointer;border-right:1px solid var(--line)}
+.seg button:last-child{border:0}
+.seg button.on.P{background:var(--ok);color:#fff}.seg button.on.L{background:var(--warn);color:#fff}.seg button.on.A{background:var(--bad);color:#fff}
+ul.l{list-style:none;margin:0;padding:0}
+ul.l li{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)}
+ul.l li:last-child{border:0}
+.mut{color:var(--mut);font-size:13px}
+.empty{padding:26px;text-align:center;color:var(--mut)}
+.dist{display:flex;gap:10px;align-items:flex-end;height:90px}
+.dist div{flex:1;text-align:center;font-size:13px}
+.dist i{display:block;background:var(--brand);border-radius:4px 4px 0 0;margin-bottom:4px;min-height:3px}
+dialog{border:1px solid var(--line);border-radius:12px;background:var(--panel);color:var(--ink);padding:20px;width:min(540px,92vw)}
+dialog::backdrop{background:rgba(0,0,0,.45)}
+dialog label{display:block;margin:10px 0;font-size:13px;color:var(--mut)}
+dialog label input,dialog label select{display:block;width:100%;margin-top:3px;color:var(--ink)}
+.row{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}
+.err{color:var(--bad);min-height:1.2em;margin:6px 0 0;font-size:13px}
+textarea{width:100%;height:200px;font:12px monospace;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:6px}
+#toast{position:fixed;bottom:calc(18px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:8px 16px;border-radius:99px;opacity:0;transition:opacity .2s;pointer-events:none}
+#toast.on{opacity:1}
+@media(max-width:780px){body{flex-direction:column}aside{width:100%;height:auto;position:static;padding:12px}aside h1{margin-bottom:8px}aside nav{flex-direction:row;overflow-x:auto}aside button{white-space:nowrap;border-left:0;border-bottom:3px solid transparent;border-radius:6px 6px 0 0}aside button.on{border-bottom-color:var(--accent)}aside small{display:none}main{padding:18px 14px 50px}.grid2{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<aside>
+  <h1>Intern Training<br>& Performance</h1>
+  <nav id="nav"></nav>
+  <small>Score = attendance 20% + assessments 40% + tasks 40%. Late counts as half a day.</small>
+</aside>
+<main id="main"></main>
+<dialog id="dlg"></dialog>
+<div id="toast" role="status"></div>
+<script>
+"use strict";
+/* ---------- helpers ---------- */
+const $=(s,r=document)=>r.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const uid=()=>Math.random().toString(36).slice(2,9);
+const z=n=>String(n).padStart(2,"0");
+const ymd=d=>`${d.getFullYear()}-${z(d.getMonth()+1)}-${z(d.getDate())}`;
+const TODAY=ymd(new Date());
+const TRACKS=["Web Development","Data Analytics","QA Testing","UI/UX Design","Other"];
+const STATUSES=["Not started","In progress","Completed"];
+const KEY="itpms.v1";
+const pct=v=>v==null?"—":Math.round(v)+"%";
+const avg=a=>{const v=a.filter(x=>x!=null);return v.length?v.reduce((s,x)=>s+x,0)/v.length:null};
+
+/* ---------- data layer ---------- */
+function seed(){
+  const people=[["Aarav Shah",0],["Diya Patel",1],["Kabir Mehta",0],["Isha Desai",2],["Rohan Joshi",1],["Meera Nair",2]];
+  const interns=people.map(([n,t],i)=>({id:uid(),name:n,email:n.split(" ")[0].toLowerCase()+"@example.com",track:TRACKS[t],start:"2026-09-01",status:i===5?"Completed":"Active"}));
+  let x=7;const rnd=()=>(x=(x*9301+49297)%233280)/233280;
+  const attendance={};let n=0;
+  for(let k=0;n<12&&k<30;k++){
+    const d=new Date();d.setDate(d.getDate()-k);
+    if([0,6].includes(d.getDay()))continue;n++;
+    const day=attendance[ymd(d)]={};
+    interns.forEach(i=>{const r=rnd();day[i.id]=r<.78?"P":r<.9?"L":"A"});
+  }
+  const types=["Quiz","Test","Project","Viva"];
+  const assessments=[];const tasks=[];
+  interns.forEach(i=>{
+    for(let k=0;k<3;k++){const d=new Date();d.setDate(d.getDate()-k*7-3);assessments.push({id:uid(),internId:i.id,title:`${types[k]} ${k+1}`,type:types[k],score:Math.round(48+rnd()*47),max:100,date:ymd(d)})}
+    const titles=["Setup dev environment","Weekly report","Mini project","Code review task"];
+    titles.forEach((t,k)=>{const d=new Date();d.setDate(d.getDate()+(k-2)*5);const st=k<2?"Completed":k===2?"In progress":"Not started";
+      tasks.push({id:uid(),internId:i.id,title:t,due:ymd(d),status:st,score:st==="Completed"?Math.round(55+rnd()*40):""})});
+  });
+  return {interns,attendance,assessments,tasks};
+}
+let S=(()=>{try{const r=localStorage.getItem(KEY);if(r)return JSON.parse(r)}catch(e){}return seed()})();
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+
+/* ---------- performance engine ---------- */
+const isOver=t=>t.status!=="Completed"&&t.due&&t.due<TODAY;
+const Calc={
+  att(id){let p=0,t=0;for(const day of Object.values(S.attendance)){const v=day[id];if(!v)continue;t++;p+=v==="P"?1:v==="L"?.5:0}return t?p/t*100:null},
+  counts(id){const c={P:0,L:0,A:0};Object.values(S.attendance).forEach(d=>d[id]&&c[d[id]]++);return c},
+  asm(id){return avg(S.assessments.filter(a=>a.internId===id).map(a=>a.score/a.max*100))},
+  task(id){
+    const t=S.tasks.filter(x=>x.internId===id);if(!t.length)return null;
+    const done=t.filter(x=>x.status==="Completed");const comp=done.length/t.length*100;
+    const q=avg(done.filter(x=>x.score!==""&&x.score!=null).map(x=>Number(x.score)));
+    return q==null?comp:comp*.5+q*.5;
+  },
+  overall(id){
+    const parts=[[this.att(id),.2],[this.asm(id),.4],[this.task(id),.4]].filter(p=>p[0]!=null);
+    if(!parts.length)return null;
+    return parts.reduce((s,p)=>s+p[0]*p[1],0)/parts.reduce((s,p)=>s+p[1],0);
+  },
+  grade:v=>v==null?"—":v>=85?"A":v>=70?"B":v>=55?"C":"D",
+  remark(id){
+    const o=this.overall(id);if(o==null)return "No data yet.";
+    const c={Attendance:this.att(id),Assessments:this.asm(id),Tasks:this.task(id)};
+    const weak=Object.entries(c).filter(e=>e[1]!=null).sort((a,b)=>a[1]-b[1])[0];
+    if(o>=85)return "Outstanding. Consider for a stretch project.";
+    if(o>=70)return `Solid progress. Improve ${weak[0].toLowerCase()}.`;
+    if(o>=55)return `Needs support, mainly ${weak[0].toLowerCase()}.`;
+    return `At risk. Schedule a 1:1 about ${weak[0].toLowerCase()}.`;
+  }
+};
+const gradeCls=g=>g==="A"||g==="B"?"ok":g==="C"?"warn":g==="D"?"bad":"";
+const chip=(t,c="")=>`<span class="chip ${c}">${esc(t)}</span>`;
+const meter=v=>`<span class="m"><i style="width:${v||0}%"></i></span>${pct(v)}`;
+const nameOf=id=>S.interns.find(i=>i.id===id)?.name??"Removed intern";
+const internOpts=(activeOnly)=>S.interns.filter(i=>!activeOnly||i.status==="Active").map(i=>[i.id,i.name]);
+const sel=(attrs,opts,cur)=>`<select ${attrs}>${opts.map(o=>{const[v,l]=Array.isArray(o)?o:[o,o];return `<option value="${esc(v)}" ${v===cur?"selected":""}>${esc(l)}</option>`}).join("")}</select>`;
+
+/* ---------- UI state ---------- */
+const UI={view:"dashboard",q:"",track:"All",status:"All",attDate:TODAY,asmIntern:"All",taskIntern:"All",taskStatus:"All"};
+const VIEWS={dashboard:"Dashboard",interns:"Interns",attendance:"Attendance",assessments:"Assessments",tasks:"Tasks",performance:"Performance"};
+function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("on");clearTimeout(toast.h);toast.h=setTimeout(()=>t.classList.remove("on"),1800)}
+
+/* ---------- dialogs ---------- */
+function validate(fields,d){
+  for(const f of fields){
+    const v=(d[f.name]||"").trim();
+    if(f.req&&!v)return `${f.label} is required.`;
+    if(f.type==="email"&&v&&!/^\S+@\S+\.\S+$/.test(v))return "Enter a valid email address.";
+    if(f.type==="number"&&v!==""){const n=Number(v);if(isNaN(n)||(f.min!=null&&n<f.min)||(f.max!=null&&n>f.max))return `Enter a valid ${f.label.toLowerCase()}${f.min!=null&&f.max!=null?` between ${f.min} and ${f.max}`:""}.`}
+    if(f.check){const m=f.check(v,d);if(m)return m}
+  }
+}
+function openForm(title,fields,onSave){
+  const dlg=$("#dlg");
+  dlg.innerHTML=`<form id="f" novalidate><h3>${esc(title)}</h3>${fields.map(f=>`<label>${esc(f.label)}${f.type==="select"
+    ?sel(`name="${f.name}"`,f.options,f.value)
+    :`<input name="${f.name}" type="${f.type||"text"}" value="${esc(f.value??"")}" ${f.min!=null?`min="${f.min}"`:""} ${f.max!=null?`max="${f.max}"`:""}>`}</label>`).join("")}
+    <p class="err" id="ferr"></p><div class="row"><button type="button" class="btn" id="fc">Cancel</button><button class="btn primary">Save</button></div></form>`;
+  dlg.showModal();
+  $("#fc").onclick=()=>dlg.close();
+  $("#f").onsubmit=e=>{e.preventDefault();const data=Object.fromEntries(new FormData(e.target));const err=validate(fields,data);if(err){$("#ferr").textContent=err;return}onSave(data);save();dlg.close();render()};
+}
+function ask(msg,onYes){
+  const dlg=$("#dlg");
+  dlg.innerHTML=`<h3>${esc(msg)}</h3><div class="row"><button class="btn" id="no">Cancel</button><button class="btn primary" id="yes">Delete</button></div>`;
+  dlg.showModal();$("#no").onclick=()=>dlg.close();
+  $("#yes").onclick=()=>{onYes();save();dlg.close();render();toast("Deleted")};
+}
+
+/* ---------- views ---------- */
+const V={};
+V.dashboard=()=>{
+  const act=S.interns.filter(i=>i.status==="Active");
+  const rows=S.interns.map(i=>({i,a:Calc.att(i.id),o:Calc.overall(i.id),od:S.tasks.filter(t=>t.internId===i.id&&isOver(t)).length}));
+  const open=S.tasks.filter(t=>t.status!=="Completed");
+  const over=open.filter(isOver);
+  const top=rows.filter(r=>r.o!=null).sort((a,b)=>b.o-a.o).slice(0,3);
+  const risk=rows.filter(r=>r.i.status==="Active"&&((r.o!=null&&r.o<60)||(r.a!=null&&r.a<75)||r.od>0));
+  const dist={A:0,B:0,C:0,D:0};rows.forEach(r=>r.o!=null&&dist[Calc.grade(r.o)]++);
+  const mx=Math.max(1,...Object.values(dist));
+  return {title:"Dashboard",body:`
+  <div class="strip"><div><b>${act.length}</b><span>active interns</span></div><div><b>${pct(avg(act.map(i=>Calc.att(i.id))))}</b><span>average attendance</span></div><div><b>${open.length}</b><span>open tasks, ${over.length} overdue</span></div><div><b>${pct(avg(rows.map(r=>r.o)))}</b><span>average performance</span></div></div>
+  <div class="grid2">
+   <div class="panel"><h3>Top performers</h3>${top.length?`<ul class="l">${top.map(r=>`<li><span>${esc(r.i.name)} <span class="mut">${esc(r.i.track)}</span></span><b>${pct(r.o)}</b></li>`).join("")}</ul>`:'<p class="empty">Scores appear once attendance, assessments or tasks are recorded.</p>'}</div>
+   <div class="panel"><h3>Needs attention</h3>${risk.length?`<ul class="l">${risk.map(r=>`<li><span>${esc(r.i.name)}</span><span class="mut">${[r.o!=null&&r.o<60?"score "+pct(r.o):"",r.a!=null&&r.a<75?"attendance "+pct(r.a):"",r.od?r.od+" overdue":""].filter(Boolean).join(", ")}</span></li>`).join("")}</ul>`:'<p class="empty">Every active intern is on track.</p>'}</div>
+   <div class="panel"><h3>Grade distribution</h3><div class="dist">${Object.entries(dist).map(([g,n])=>`<div><i style="height:${n/mx*70}px"></i>${g}: ${n}</div>`).join("")}</div></div>
+   <div class="panel"><h3>Next deadlines</h3>${open.length?`<ul class="l">${open.sort((a,b)=>a.due.localeCompare(b.due)).slice(0,5).map(t=>`<li><span>${esc(t.title)} <span class="mut">${esc(nameOf(t.internId))}</span></span>${isOver(t)?chip(t.due+" overdue","bad"):`<span class="mut">${t.due}</span>`}</li>`).join("")}</ul>`:'<p class="empty">No open tasks.</p>'}</div>
+  </div>`};
+};
+V.interns=()=>{
+  const q=UI.q.toLowerCase();
+  const list=S.interns.filter(i=>(UI.track==="All"||i.track===UI.track)&&(UI.status==="All"||i.status===UI.status)&&(i.name+i.email).toLowerCase().includes(q));
+  return {title:"Interns",action:'<button class="btn primary" data-act="addIntern">Add intern</button>',body:`
+  <div class="bar"><input id="q" data-f="q" placeholder="Search name or email" value="${esc(UI.q)}">${sel('id="ft" data-f="track"',["All",...TRACKS],UI.track)}${sel('id="fs" data-f="status"',["All","Active","Completed","Dropped"],UI.status)}</div>
+  <div class="tw"><table><tr><th>Name</th><th>Track</th><th>Start</th><th>Status</th><th>Score</th><th></th></tr>
+  ${list.map(i=>{const o=Calc.overall(i.id),g=Calc.grade(o);return `<tr><td><button class="link" data-act="profile" data-id="${i.id}">${esc(i.name)}</button><div class="mut">${esc(i.email)}</div></td><td>${esc(i.track)}</td><td>${i.start}</td><td>${chip(i.status,i.status==="Active"?"ok":i.status==="Dropped"?"bad":"")}</td><td>${pct(o)} ${g!=="—"?chip(g,gradeCls(g)):""}</td><td class="act"><button class="btn sm" data-act="editIntern" data-id="${i.id}">Edit</button> <button class="btn sm danger" data-act="delIntern" data-id="${i.id}">Delete</button></td></tr>`}).join("")||`<tr><td colspan="6" class="empty">No interns match. Clear the filters or add an intern.</td></tr>`}</table></div>`};
+};
+V.attendance=()=>{
+  const act=S.interns.filter(i=>i.status==="Active");
+  const day=S.attendance[UI.attDate]||{};
+  const wk=[0,6].includes(new Date(UI.attDate+"T00:00").getDay());
+  return {title:"Attendance",body:`
+  <div class="bar"><input type="date" id="ad" data-f="attDate" max="${TODAY}" value="${UI.attDate}"><button class="btn" data-act="markAll">Mark all present</button>${wk?chip("Weekend","warn"):""}</div>
+  <div class="tw"><table><tr><th>Intern</th><th>Status on ${UI.attDate}</th><th>Overall</th><th>P / L / A</th></tr>
+  ${act.map(i=>{const c=Calc.counts(i.id);return `<tr><td>${esc(i.name)}</td><td><span class="seg">${[["P","Present"],["L","Late"],["A","Absent"]].map(([v,l])=>`<button class="${v} ${day[i.id]===v?"on":""}" data-act="mark" data-id="${i.id}" data-v="${v}">${l}</button>`).join("")}</span></td><td>${meter(Calc.att(i.id))}</td><td class="mut">${c.P} / ${c.L} / ${c.A}</td></tr>`}).join("")||`<tr><td colspan="4" class="empty">No active interns. Add one in the Interns tab.</td></tr>`}</table></div>`};
+};
+V.assessments=()=>{
+  const list=S.assessments.filter(a=>UI.asmIntern==="All"||a.internId===UI.asmIntern).sort((a,b)=>b.date.localeCompare(a.date));
+  return {title:"Assessments",action:'<button class="btn primary" data-act="addAsm">Record assessment</button>',body:`
+  <div class="bar">${sel('id="fa" data-f="asmIntern"',[["All","All interns"],...internOpts()],UI.asmIntern)}</div>
+  <div class="tw"><table><tr><th>Intern</th><th>Assessment</th><th>Date</th><th>Score</th><th></th></tr>
+  ${list.map(a=>{const p=a.score/a.max*100;return `<tr><td>${esc(nameOf(a.internId))}</td><td>${esc(a.title)} <span class="mut">${esc(a.type)}</span></td><td>${a.date}</td><td>${a.score}/${a.max} ${chip(pct(p),p>=70?"ok":p>=55?"warn":"bad")}</td><td class="act"><button class="btn sm danger" data-act="delAsm" data-id="${a.id}">Delete</button></td></tr>`}).join("")||`<tr><td colspan="5" class="empty">No assessments recorded yet.</td></tr>`}</table></div>`};
+};
+V.tasks=()=>{
+  const list=S.tasks.filter(t=>(UI.taskIntern==="All"||t.internId===UI.taskIntern)&&(UI.taskStatus==="All"||(UI.taskStatus==="Overdue"?isOver(t):t.status===UI.taskStatus))).sort((a,b)=>a.due.localeCompare(b.due));
+  return {title:"Tasks",action:'<button class="btn primary" data-act="addTask">Assign task</button>',body:`
+  <div class="bar">${sel('id="fti" data-f="taskIntern"',[["All","All interns"],...internOpts()],UI.taskIntern)}${sel('id="fts" data-f="taskStatus"',["All",...STATUSES,"Overdue"],UI.taskStatus)}</div>
+  <div class="tw"><table><tr><th>Task</th><th>Intern</th><th>Due</th><th>Status</th><th>Grade</th><th></th></tr>
+  ${list.map(t=>`<tr><td>${esc(t.title)}</td><td>${esc(nameOf(t.internId))}</td><td>${t.due} ${isOver(t)?chip("Overdue","bad"):""}</td><td>${sel(`data-chg="status" data-id="${t.id}"`,STATUSES,t.status)}</td><td>${t.score===""||t.score==null?'<span class="mut">—</span>':t.score+"%"}</td><td class="act"><button class="btn sm" data-act="editTask" data-id="${t.id}">Edit</button> <button class="btn sm danger" data-act="delTask" data-id="${t.id}">Delete</button></td></tr>`).join("")||`<tr><td colspan="6" class="empty">No tasks match. Assign a task to get started.</td></tr>`}</table></div>`};
+};
+V.performance=()=>{
+  const rows=S.interns.map(i=>({i,a:Calc.att(i.id),s:Calc.asm(i.id),t:Calc.task(i.id),o:Calc.overall(i.id)})).sort((x,y)=>(y.o??-1)-(x.o??-1));
+  return {title:"Performance",action:'<button class="btn" data-act="csv">Export CSV</button>',body:`
+  <div class="tw"><table><tr><th>Rank</th><th>Intern</th><th>Attendance</th><th>Assessments</th><th>Tasks</th><th>Overall</th><th>Feedback</th></tr>
+  ${rows.map((r,k)=>{const g=Calc.grade(r.o);return `<tr><td>${k+1}</td><td><button class="link" data-act="profile" data-id="${r.i.id}">${esc(r.i.name)}</button><div class="mut">${esc(r.i.track)}</div></td><td>${meter(r.a)}</td><td>${meter(r.s)}</td><td>${meter(r.t)}</td><td><b>${pct(r.o)}</b> ${g!=="—"?chip(g,gradeCls(g)):""}</td><td class="mut">${esc(Calc.remark(r.i.id))}</td></tr>`}).join("")||`<tr><td colspan="7" class="empty">Add interns to see rankings.</td></tr>`}</table></div>`};
+};
+
+/* ---------- render ---------- */
+function render(){
+  const keep=document.activeElement?.id;
+  const v=V[UI.view]();
+  $("#nav").innerHTML=Object.entries(VIEWS).map(([k,l])=>`<button data-act="nav" data-view="${k}" class="${k===UI.view?"on":""}">${l}</button>`).join("");
+  $("#main").innerHTML=`<header class="top"><h2>${v.title}</h2><div>${v.action||""}</div></header>${v.body}`;
+  if(keep){const el=document.getElementById(keep);if(el){el.focus();try{el.setSelectionRange(el.value.length,el.value.length)}catch(e){}}}
+}
+
+/* ---------- actions ---------- */
+const emailTaken=(em,id)=>S.interns.some(i=>i.email.toLowerCase()===em.toLowerCase()&&i.id!==id);
+function internForm(i){
+  const cur=i||{name:"",email:"",track:TRACKS[0],start:TODAY,status:"Active"};
+  openForm(i?"Edit intern":"Add intern",[
+    {name:"name",label:"Full name",req:1,value:cur.name},
+    {name:"email",label:"Email",type:"email",req:1,value:cur.email,check:v=>emailTaken(v,i?.id)?"Another intern already uses this email.":""},
+    {name:"track",label:"Training track",type:"select",options:TRACKS,value:cur.track},
+    {name:"start",label:"Start date",type:"date",req:1,value:cur.start},
+    {name:"status",label:"Status",type:"select",options:["Active","Completed","Dropped"],value:cur.status}
+  ],d=>{d.name=d.name.trim();d.email=d.email.trim();if(i)Object.assign(i,d);else S.interns.push({id:uid(),...d});toast("Intern saved")});
+}
+function taskForm(t){
+  const cur=t||{internId:internOpts(true)[0]?.[0],title:"",due:TODAY,status:"Not started",score:""};
+  openForm(t?"Edit task":"Assign task",[
+    {name:"internId",label:"Intern",type:"select",options:internOpts(!t),value:cur.internId},
+    {name:"title",label:"Task title",req:1,value:cur.title},
+    {name:"due",label:"Due date",type:"date",req:1,value:cur.due},
+    {name:"status",label:"Status",type:"select",options:STATUSES,value:cur.status},
+    {name:"score",label:"Grade (0-100, optional)",type:"number",min:0,max:100,value:cur.score}
+  ],d=>{d.title=d.title.trim();if(t)Object.assign(t,d);else S.tasks.push({id:uid(),...d});toast("Task saved")});
+}
+const A={
+  nav:d=>{UI.view=d.view;render();scrollTo(0,0)},
+  addIntern:()=>internForm(),
+  editIntern:d=>internForm(S.interns.find(i=>i.id===d.id)),
+  delIntern:d=>ask(`Delete ${nameOf(d.id)} and all their records?`,()=>{
+    S.interns=S.interns.filter(i=>i.id!==d.id);S.assessments=S.assessments.filter(a=>a.internId!==d.id);S.tasks=S.tasks.filter(t=>t.internId!==d.id);
+    Object.values(S.attendance).forEach(day=>delete day[d.id])}),
+  mark:d=>{const day=S.attendance[UI.attDate]??={};day[d.id]=day[d.id]===d.v?undefined:d.v;if(!day[d.id])delete day[d.id];save();render()},
+  markAll:()=>{const day=S.attendance[UI.attDate]??={};S.interns.filter(i=>i.status==="Active").forEach(i=>day[i.id]="P");save();render();toast("Everyone marked present")},
+  addAsm:()=>{
+    if(!S.interns.length)return toast("Add an intern first");
+    openForm("Record assessment",[
+      {name:"internId",label:"Intern",type:"select",options:internOpts(true),value:internOpts(true)[0]?.[0]},
+      {name:"title",label:"Title",req:1,value:""},
+      {name:"type",label:"Type",type:"select",options:["Quiz","Test","Project","Viva"],value:"Quiz"},
+      {name:"max",label:"Maximum marks",type:"number",req:1,min:1,max:1000,value:100},
+      {name:"score",label:"Marks obtained",type:"number",req:1,min:0,max:1000,value:"",check:(v,d)=>Number(v)>Number(d.max)?"Marks obtained cannot exceed the maximum.":""},
+      {name:"date",label:"Date",type:"date",req:1,value:TODAY}
+    ],d=>{S.assessments.push({id:uid(),internId:d.internId,title:d.title.trim(),type:d.type,score:Number(d.score),max:Number(d.max),date:d.date});toast("Assessment recorded")});
+  },
+  delAsm:d=>ask("Delete this assessment?",()=>{S.assessments=S.assessments.filter(a=>a.id!==d.id)}),
+  addTask:()=>S.interns.some(i=>i.status==="Active")?taskForm():toast("Add an active intern first"),
+  editTask:d=>taskForm(S.tasks.find(t=>t.id===d.id)),
+  delTask:d=>ask("Delete this task?",()=>{S.tasks=S.tasks.filter(t=>t.id!==d.id)}),
+  profile:d=>{
+    const i=S.interns.find(x=>x.id===d.id),c=Calc.counts(i.id),dlg=$("#dlg");
+    dlg.innerHTML=`<h3>${esc(i.name)} <span class="mut">${esc(i.track)}</span></h3><p class="mut">${esc(i.email)}, started ${i.start}</p>
+    <p>Overall <b>${pct(Calc.overall(i.id))}</b> ${chip(Calc.grade(Calc.overall(i.id)),gradeCls(Calc.grade(Calc.overall(i.id))))}<br>Attendance ${meter(Calc.att(i.id))} <span class="mut">${c.P}P ${c.L}L ${c.A}A</span><br>Assessments ${meter(Calc.asm(i.id))}<br>Tasks ${meter(Calc.task(i.id))}</p>
+    <p class="mut">${esc(Calc.remark(i.id))}</p>
+    <h3>Assessments</h3><ul class="l">${S.assessments.filter(a=>a.internId===i.id).map(a=>`<li><span>${esc(a.title)}</span><span>${a.score}/${a.max}</span></li>`).join("")||'<li class="mut">None yet</li>'}</ul>
+    <h3 style="margin-top:12px">Tasks</h3><ul class="l">${S.tasks.filter(t=>t.internId===i.id).map(t=>`<li><span>${esc(t.title)}</span><span>${isOver(t)?chip("Overdue","bad"):chip(t.status)}</span></li>`).join("")||'<li class="mut">None yet</li>'}</ul>
+    <div class="row"><button class="btn primary" id="cl">Close</button></div>`;
+    dlg.showModal();$("#cl").onclick=()=>dlg.close();
+  },
+  csv:()=>{
+    const q=v=>`"${String(v).replace(/"/g,'""')}"`;
+    const head=["Rank","Name","Track","Attendance %","Assessments %","Tasks %","Overall %","Grade"];
+    const rows=S.interns.map(i=>({i,o:Calc.overall(i.id)})).sort((a,b)=>(b.o??-1)-(a.o??-1)).map((r,k)=>[k+1,r.i.name,r.i.track,...[Calc.att(r.i.id),Calc.asm(r.i.id),Calc.task(r.i.id),r.o].map(v=>v==null?"":v.toFixed(1)),Calc.grade(r.o)]);
+    const text=[head,...rows].map(r=>r.map(q).join(",")).join("\n");
+    const dlg=$("#dlg");
+    dlg.innerHTML=`<h3>Performance report (CSV)</h3><textarea id="ta" readonly>${esc(text)}</textarea><div class="row"><button class="btn" id="cp">Copy</button><button class="btn primary" id="cl">Close</button></div>`;
+    dlg.showModal();$("#cl").onclick=()=>dlg.close();
+    $("#cp").onclick=()=>{const ta=$("#ta");ta.select();try{navigator.clipboard.writeText(text).then(()=>toast("Copied"),()=>toast("Press Ctrl+C to copy"))}catch(e){toast("Press Ctrl+C to copy")}};
+  }
+};
+const C={status:(d,val)=>{const t=S.tasks.find(x=>x.id===d.id);t.status=val;save();render()}};
+
+/* event delegation */
+document.addEventListener("click",e=>{const b=e.target.closest("[data-act]");if(b&&A[b.dataset.act])A[b.dataset.act](b.dataset)});
+const onField=e=>{const el=e.target;if(el.dataset.f){UI[el.dataset.f]=el.value;render()}else if(el.dataset.chg&&e.type==="change")C[el.dataset.chg](el.dataset,el.value)};
+document.addEventListener("input",onField);
+document.addEventListener("change",e=>{if(e.target.tagName==="SELECT"||e.target.type==="date")onField(e)});
+render();
+</script>
+</body>
+</html>
